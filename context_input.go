@@ -551,13 +551,16 @@ func (ctx *Context) SaveFile(key string, cover bool, newfname ...string) (savedF
 		fullname = filepath.Join(UploadDir(), filename)
 	} else {
 		if strings.Contains(newfname[0], "?") {
-			fullname = filepath.Join(UploadDir(), strings.Replace(newfname[0], "?", filename, -1))
+			// fullname = filepath.Join(UploadDir(), strings.Replace(newfname[0], "?", filename, -1))
+			fullname = strings.Replace(newfname[0], "?", filename, -1)
 		} else {
 			fname := strings.TrimRight(newfname[0], ".")
 			if filepath.Ext(fname) == "" {
-				fullname = filepath.Join(UploadDir(), fname+filepath.Ext(filename))
+				// fullname = filepath.Join(UploadDir(), fname+filepath.Ext(filename))
+				fullname = fname + filepath.Ext(filename)
 			} else {
-				fullname = filepath.Join(UploadDir(), fname)
+				// fullname = filepath.Join(UploadDir(), fname)
+				fullname = newfname[0]
 			}
 		}
 	}
@@ -625,13 +628,16 @@ func (ctx *Context) SaveFiles(key string, cover bool, newfname ...string) (saved
 			fullname = filepath.Join(UploadDir(), filename)
 		} else {
 			if strings.Contains(newfname[0], "?") {
-				fullname = filepath.Join(UploadDir(), strings.Replace(newfname[0], "?", filename, -1))
+				// fullname = filepath.Join(UploadDir(), strings.Replace(newfname[0], "?", filename, -1))
+				fullname = strings.Replace(newfname[0], "?", filename, -1)
 			} else {
 				fname := strings.TrimRight(newfname[0], ".")
 				if filepath.Ext(fname) == "" {
-					fullname = filepath.Join(UploadDir(), fname+filepath.Ext(filename))
+					// fullname = filepath.Join(UploadDir(), fname+filepath.Ext(filename))
+					fullname = fname + filepath.Ext(filename)
 				} else {
-					fullname = filepath.Join(UploadDir(), fname)
+					// fullname = filepath.Join(UploadDir(), fname)
+					fullname = newfname[0]
 				}
 			}
 		}
