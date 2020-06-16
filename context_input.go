@@ -609,6 +609,7 @@ func (ctx *Context) SaveFile(key string, cover bool, newfname ...string) (savedF
 		return
 	}
 	savedFileInfo.Size, err = io.Copy(f2, f)
+	f2.Sync()
 	err3 := f2.Close()
 	if err3 != nil && err == nil {
 		err = err3
@@ -698,6 +699,7 @@ func (ctx *Context) SaveFiles(key string, cover bool, newfname ...string) (saved
 			}
 		}
 		info.Size, err = io.Copy(f2, f)
+		f2.Sync()
 		err3 := f2.Close()
 		if err3 != nil && err == nil {
 			err = err3
